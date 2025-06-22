@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ký Ức Lớp Mình</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h1 style="text-align:center; font-size: 2.5em; margin-top: 20px;">Ký Ức Lớp Mình</h1>
+
+  <form method="POST" enctype="multipart/form-data" style="text-align:center; margin-top: 20px;">
+    <input type="file" name="file">
+    <button type="submit">Tải ảnh/video lên</button>
+  </form>
+
+  <div class="gallery">
+    {% for file in files %}
+      <a href="#modal_{{ loop.index }}">
+        <img src="{{ url_for('static', filename='uploads/' ~ file) }}">
+      </a>
+      <div id="modal_{{ loop.index }}" class="modal" onclick="this.style.display='none'">
+        <img class="modal-content" src="{{ url_for('static', filename='uploads/' ~ file) }}">
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
